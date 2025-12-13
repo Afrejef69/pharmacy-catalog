@@ -6,7 +6,7 @@ import { useSearchParams } from "next/navigation";
 import { Card } from "@/components";
 
 export default function Home() {
-  const [prducts, setProducts] = useState<Products[]>([]);
+  const [products, setProducts] = useState<Products[]>([]);
   const params = useSearchParams();
   const search = (params.get("q") ?? "").toLowerCase();
 
@@ -16,8 +16,10 @@ export default function Home() {
      .then((data: Products[]) => setProducts(data))
   }, []);
 
-  const filtered = prducts.filter((p) =>
-    p.name.toLowerCase().includes(search)
+  const filtered = products.filter((p) => {
+    if (!p.Name) return false;
+    return p.Name.toLowerCase().includes(search);
+  }
   );
 
   return (

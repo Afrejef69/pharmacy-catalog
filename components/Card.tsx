@@ -5,20 +5,20 @@ export default function Card({ product }: {product: Products}) {
     return (
         <div className="border rounded-lg p-4 shadow-sm hover:shadow-md transition">
             <Image
-                src={product.imagen}
-                alt={product.name}
+                src={product.Image}
+                alt={product.Name}
                 fill
                 className="w-full h-40 object-contain mb-3"
             />
             
-            <h3 className="text-lg font-semibold">{product.name}</h3>
-            {product.description && (
-                <p className="text-sm text-gray-600">{product.description}</p>
+            <h3 className="text-lg font-semibold">{product.Name}</h3>
+            {product.Description && (
+                <p className="text-sm text-gray-600">{product.Description}</p>
             )}
 
-            <p className="mt-2 font-bold text-blue-600">Q{product.price}</p>
+            <p className="mt-2 font-bold text-blue-600">Q{product.Price}</p>
 
-            <p className="text-xs text-gray-500 mt-1">Stock: {product.stock}</p>
+            <p className="text-xs text-gray-500 mt-1">Stock: {product.Stock}</p>
         </div>
     );
 }

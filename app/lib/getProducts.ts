@@ -1,13 +1,13 @@
 import Papa from "papaparse";
 
 export type Products = {
-    name: string;
-    description?: string;
-    price: string;
-    imagen: string;
-    category?: string;
-    stock: string;
-    codigo: string;
+    Name: string;
+    Description?: string;
+    Price: string;
+    Image: string;
+    Category?: string;
+    Stock: string;
+    Code: string;
 };
 
 export async function getProducts(): Promise<Products[]>{
