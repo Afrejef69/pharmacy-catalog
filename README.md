@@ -1,36 +1,97 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Pharmacy Product Catalog
 
-## Getting Started
+A modern and lightweight product catalog web application built with **Next.js**, designed for pharmacies to showcase their products in a clean, searchable interface.
 
-First, run the development server:
+The catalog is powered by **Google Sheets** as a read-only data source, making product management simple and accessible without requiring a traditional database or admin panel.
 
-```bash
+---
+
+## 🚀 Features
+
+- 📦 Product catalog with scalable structure (200+ products)
+- 🔍 Global search bar (by name, category, or code)
+- 🖼 Optimized product images using `next/image`
+- 📄 Data source powered by Google Sheets (CSV export)
+- ⚡ Fast performance with Next.js App Router
+- 🧩 Modular and reusable component architecture
+- 📱 Responsive design
+- 🌐 Ready for deployment on Vercel
+
+## 🛠 Tech Stack
+
+- **Framework:** Next.js (App Router)
+- **Language:** TypeScript
+- **Styling:** CSS / Global styles
+- **Data Source:** Google Sheets (CSV - read-only)
+- **Image Optimization:** `next/image`
+- **Deployment:** Vercel
+
+---
+
+## 📁 Project Structure
+
+app/
+│ ├── page.tsx # Main catalog page
+│ ├── layout.tsx # Global layout (header, footer)
+│
+components/
+│ ├── Footer.tsx # Contact & footer information
+│ ├── ProductCard.tsx # Product display card
+│ ├── SearchBar.tsx # Global search component
+│
+app/api/products/
+│ └── route.ts # API route to fetch products from Google Sheets
+│
+styles/
+│ └── styles.css # Global styles
+│
+public/
+
+---
+
+## 📊 Google Sheets Format
+
+| Column       | Type   | Description                          |
+|--------------|--------|--------------------------------------|
+| Name         | string | Product name                         |
+| Description  | string | Product description                  |
+| Price        | string | Product price                        |
+| Image        | string | Public Google Drive image URL        |
+| Category     | string | Product category                     |
+| Stock        | string | Available stock                      |
+| Code         | string | Internal product code                |
+
+> ℹ️ All data is read-only. No credentials or sensitive information are required.
+
+---
+
+## 🔧 Environment Setup
+
+1. Clone the repository:
+
+bash:
+
+- git clone git@github.com:YOUR_USERNAME/YOUR_REPO.git
+
+## Install Dependencies
+
+npm install
+
+## Run the development server
+
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Open
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+http://localhost:3000
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📄 License
 
-## Learn More
+This project is licensed under the MIT License.
 
-To learn more about Next.js, take a look at the following resources:
+## 👨‍💻 Maintainers
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+This project was developed to serve as a scalable and maintainable solution for pharmacy product catalogs.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Contributions and improvements are welcome.
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
