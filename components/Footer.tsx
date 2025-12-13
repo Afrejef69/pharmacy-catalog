@@ -21,10 +21,11 @@ export default function Footer() {
                 <div>
                     <h4 className="font-semibold mb-2">Information</h4>
                     <ul className="space-y-1">
-                        <li>Opening hours</li>
-                        <li>Product availability may vary</li>
-                        <li>Prices subject to change without notice</li>
-                        <li>This catalog is for informational purposes only</li>
+                        <li>Opening hours.</li>
+                        <li>Product availability may vary.</li>
+                        <li>Prices availability subject to change without notice.</li>
+                        <li>This catalog is for informational purposes only.</li>
+                        <li>This catalog does not constitute a sales contract.</li>
                     </ul>
                 </div>
             </div>

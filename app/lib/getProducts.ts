@@ -16,7 +16,10 @@ export async function getProducts(): Promise<Product[]>{
     const csvUrl = 
         "https://docs.google.com/spreadsheets/d/e/2PACX-1vRDnhchvf_h1q2cnlaSSk5gtYuavuaeJdnhYoIzhxhu57wHGoLMBlhksGgA7krSCru0dlzV5QkoFZ74/pub?output=csv";
 
-    const response = await fetch(csvUrl, { cache: "no-cache" });
+    const response = await fetch(csvUrl, {
+        //next: { revalidate: 3600 },
+        cache: "no-store"
+    });
     const csvText = await response.text();
 
     const parsed = Papa.parse(csvText, {
