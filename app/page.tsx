@@ -1,24 +1,24 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Products } from "./lib/getProducts";
+import { Product } from "./lib/getProducts";
 import { useSearchParams } from "next/navigation";
 import { Card } from "@/components";
 
 export default function Home() {
-  const [products, setProducts] = useState<Products[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
   const params = useSearchParams();
   const search = (params.get("q") ?? "").toLowerCase();
 
   useEffect(() => {
     fetch("/api/products")
      .then((res) => res.json())
-     .then((data: Products[]) => setProducts(data))
+     .then((data: Product[]) => setProducts(data))
   }, []);
 
   const filtered = products.filter((p) => {
-    if (!p.Name) return false;
-    return p.Name.toLowerCase().includes(search);
+    if (!p.name) return false;
+    return p.name.toLowerCase().includes(search);
   }
   );
 
@@ -28,6 +28,11 @@ export default function Home() {
         {filtered.map((p, idx) => (
           <Card key={idx} product={p} />
         ))}
+        {filtered.length === 0 && (
+          <p className="text-center text-gray-500 mt-10">
+            No products found
+          </p>
+        )}
       </div>
     </div>
   );

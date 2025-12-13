@@ -1,20 +1,22 @@
 import Papa from "papaparse";
 
-export type Products = {
-    Name: string;
-    Description?: string;
-    Price: string;
-    Image: string;
-    Category?: string;
-    Stock: string;
-    Code: string;
+export type Product = {
+    name: string;
+    description: string;
+    price: string;
+    image: string;
+    category: string;
+    stock: string;
+    code: string;
 };
 
-export async function getProducts(): Promise<Products[]>{
-    const product = 
+type RawProduct = Partial<Product>;
+
+export async function getProducts(): Promise<Product[]>{
+    const csvUrl = 
         "https://docs.google.com/spreadsheets/d/e/2PACX-1vRDnhchvf_h1q2cnlaSSk5gtYuavuaeJdnhYoIzhxhu57wHGoLMBlhksGgA7krSCru0dlzV5QkoFZ74/pub?output=csv";
 
-    const response = await fetch(product, { cache: "no-cache" });
+    const response = await fetch(csvUrl, { cache: "no-cache" });
     const csvText = await response.text();
 
     const parsed = Papa.parse(csvText, {
@@ -22,5 +24,23 @@ export async function getProducts(): Promise<Products[]>{
         skipEmptyLines: true,
     });
 
-    return parsed.data as Products[];
+    const rawProducts = parsed.data as RawProduct[];
+    
+    const products: Product[] = [];
+    
+    for (const p of rawProducts) {
+        if (!p.name || !p.image) continue;
+
+        products.push({
+            name: p.name.trim(),
+            description: p.description?.trim() ?? "",
+            price: p.price?.trim() ?? "",
+            image: p.image.trim(),
+            category: p.category?.trim() ?? "",
+            stock: p.stock?.trim() ?? "",
+            code: p.code?.trim() ?? "",
+        });
+    }
+
+    return products;
 }

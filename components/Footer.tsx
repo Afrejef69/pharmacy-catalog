@@ -8,7 +8,7 @@ export default function Footer() {
                     {/* Logo */}
                     {/* <Image src="" alt="Logo" width={120} height={40} />*/}
                 </div>
-                {/* Column 1 - Contact */}
+                {/* Column 2 - Contact */}
                 <div>
                     <h4 className="font-semibold mb-2">Contact</h4>
                     <ul className="space-y-1">
@@ -17,12 +17,14 @@ export default function Footer() {
                         <li>✉️ Email: contact@pharmacy.com</li>
                     </ul>
                 </div>
+                {/* Column 3 - Information */}
                 <div>
                     <h4 className="font-semibold mb-2">Information</h4>
                     <ul className="space-y-1">
                         <li>Opening hours</li>
                         <li>Product availability may vary</li>
-                        <li>Prices subject to change</li>
+                        <li>Prices subject to change without notice</li>
+                        <li>This catalog is for informational purposes only</li>
                     </ul>
                 </div>
             </div>
