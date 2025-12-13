@@ -1,20 +1,35 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
+import { useCatalog } from "@/app/context/CatalogContext";
+import React from "react";
 
 export default function SearchBar() {
    const router = useRouter();
    const params = useSearchParams();
-   const search = params.get("q") ?? "";
+   const { search, setSearch} = useCatalog();
+
+   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value.toLowerCase();
+    setSearch(value);
+
+    const newParams = new URLSearchParams(params.toString());
+
+    if (value) {
+      newParams.set("q", value);
+    } else {
+      newParams.delete("q");
+    }
+
+    router.push(`/?${newParams.toString()}`, { scroll: false });
+   };
    
    return (
-    <input type="text"
+    <input
+      type="text"
       placeholder="Buscar producto..."
-      defaultValue={search}
-      onChange={(e) => {
-        const newValue = e.target.value;
-        router.push(`/?q=${newValue}`);
-      }}
+      value={search}
+      onChange={handleChange}
       className="w-full p-2 border rounded-md"
     />
    );

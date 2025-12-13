@@ -6,6 +6,12 @@ import { useSearchParams, useRouter } from "next/navigation";
 import { Card } from "@/components";
 
   const ITEMS_PER_PAGE = 20;
+  
+  const normalize = (text: string) =>
+    text
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase();
 
 export default function Home() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -33,12 +39,20 @@ export default function Home() {
     );
   }
 
-  const filtered = products.filter((p) => 
-  [p.name, p.description, p.category, p.code]
-    .join(" ")
-    .toLowerCase()
-    .includes(search)
-  );
+  const filtered = products.filter((p) => {
+    const serchableText = normalize(
+    [
+      p.name,
+      p.description ?? "",
+      p.category ?? "",
+      p.code,
+    ]
+      .join(" ")
+      .toLowerCase()
+    );
+
+    return serchableText.includes(normalize(search));
+  });
 
   const totalPages = Math.ceil(filtered.length / ITEMS_PER_PAGE);
   const start = (page - 1) * ITEMS_PER_PAGE;

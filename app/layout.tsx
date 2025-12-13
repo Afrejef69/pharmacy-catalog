@@ -1,6 +1,7 @@
 import "./globals.css";
 import { Footer } from "@/components"
-import { SearchBar } from "@/components";
+import { CatalogProvider } from "./context/CatalogContext";
+import { SearchBar } from "@/components"
 import React from "react";
 
 export const metada = {
@@ -12,9 +13,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
         <body className="min-h-screen flex flex-col">
-          <SearchBar />
-          {children}
-          <Footer />
+          <CatalogProvider>
+            <header className="p-4">
+              <SearchBar />
+            </header>
+            <main className="flex-1">{children}</main>
+            <Footer />
+          </CatalogProvider>
         </body>
     </html>
   );
