@@ -24,12 +24,12 @@ export default function Home() {
   useEffect(() => {
     fetch("/api/products")
      .then((res) => {
-        if (!res.ok) throw new Error("Failed");
+        if (!res.ok) throw new Error("Failed to fetch products");
         return res.json();  
     })
      .then((data: Product[]) => setProducts(data))
      .catch(() => setError(true));
-  }, []);
+  }, [setProducts]);
 
   if (error) {
     return(

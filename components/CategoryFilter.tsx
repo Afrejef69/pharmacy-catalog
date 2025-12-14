@@ -2,25 +2,35 @@
 
 import { useCatalog } from "@/app/context/CatalogContext";
 
-type Props ={
-    categories: string[];
-}
-
-export default function CategoryFilter({ categories }: Props) {
-    const { category, setCategory } = useCatalog();
+export default function CategoryFilter() {
+    const { category, setCategory, categories } = useCatalog();
 
     return (
-        <select
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-            className="border rounded-md px-3 py-2 w-full sm:w-64"
-        >
-            <option value="">All categories</option>
+        <div>
+            <button
+                onClick={() => setCategory("")}
+                className={`px-3 py-1 rounded-full text-sm border transition
+                    ${category === ""
+                        ? "bg-blue-600 text-white border-blue-600"
+                        : "bg-surface border-subtle text-muted hover:bg-gray-100 dark:hover:bg-gray-800"
+                    }`}
+                >
+                All
+            </button>
+
             {categories.map((cat) => (
-                <option key={cat} value={cat}>
+                <button
+                    key = {cat}
+                    onClick={() => setCategory(cat)}
+                    className={`px-3 py-1 rounded-full text-sm border transition whitespace-nowrap
+                        ${category === cat
+                            ? "bg-blue-600 text-white border-blue-600"
+                            : "bg-surface border-subtle text-muted hover:bg-gray-100 dark:hover:bg-gray-800"
+                        }`}
+                >
                     {cat}
-                </option>
+                </button>
             ))}
-        </select>
+        </div>
     )
 }

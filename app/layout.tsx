@@ -1,26 +1,22 @@
 import "./globals.css";
-import { Footer } from "@/components"
 import { CatalogProvider } from "./context/CatalogContext";
-import { SearchBar } from "@/components"
-import React from "react";
+import { Navbar } from "@/components";
+import { Footer } from "@/components";
 
-export const metada = {
-  title: "Pharmacy Product Catalog",
-  description: "Browse pharmacy products easily and quickly",
-};
-
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
     <html lang="en">
-        <body className="min-h-screen flex flex-col">
-          <CatalogProvider>
-            <header className="p-4">
-              <SearchBar />
-            </header>
-            <main className="flex-1">{children}</main>
-            <Footer />
-          </CatalogProvider>
-        </body>
+      <body className="min-h-screen flex flex-col bg-gray-100 dark:bg-gray-950 text-gray-900 dark:text-gray-100">
+        <CatalogProvider>
+          <Navbar />
+          <main className="flex-1 max-2-6xl mx-auto px-4 py-6">{children}</main>
+          <Footer />
+        </CatalogProvider>
+      </body>
     </html>
   );
 }
