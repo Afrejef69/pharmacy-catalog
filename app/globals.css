@@ -1,19 +1,32 @@
 @import "tailwindcss";
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* ====================
       Design tokens
    ==================== */
 
 :root {
-  --bg: #f7f8fa;
+  --bg: #f4f7fb;
   --surface: #ffffff;
   --text: #1f2937;
   --muted: #6b7280;
-  --border: #e5e7eb;
-  --primary: #2563eb;
+  --border: #3b82f6;
+  --primary: #e5e7eb;
 }
 
-@media (prefers-color-scheme: dark) {
+.dark {
+  --bg: #0b1020;
+  --surface: #121832;
+  --text: #e5e7eb;
+  --muted: #9ca3af;
+  --primary: #8b5cf6;
+  --border: #1f2937;
+}
+
+/* @media (prefers-color-scheme: dark) {
   :root {
     --bg: #0f172a;
     --surface: #020617;
@@ -22,7 +35,7 @@
     --border: #1e293b;
     --primary: #3b82f6;
   }
-}
+} */
 
 /* ====================
       Base styles

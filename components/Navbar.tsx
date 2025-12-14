@@ -2,8 +2,19 @@
 
 import SearchBar from "./SearchBar";
 import CategoryFilter from "./CategoryFilter";
+import { useEffect, useState } from "react";
 
 export const Navbar = () => {
+    const [dark, setDark] = useState(false);
+
+    useEffect(() => {
+        if (dark) {
+            document.documentElement.classList.add("dark");
+        } else {
+            document.documentElement.classList.remove("dark");
+        }
+    }, [dark]);
+
     return (
         <header className="sticky top-0 z-50 bg-surface border-b border-subtle dark:bg-black shadow">
             <div className="max-w-7xl mx-auto px-4 py-3 space-y-3">
@@ -22,15 +33,19 @@ export const Navbar = () => {
                 </div>
 
                 {/** Search */}
-                <div className="relative">
-                    <SearchBar />
-                </div>
+                <SearchBar />
 
                 {/** Categories */}
-                <div className="flex gap-2 overflow-x-auto pb-1">
-                    <CategoryFilter />
-                </div>
+                <CategoryFilter />
 
+                {/** Dark mode toggle */}
+                <button
+                    onClick={() => setDark(!dark)}
+                    className="rounded-lg p-2 hover:bg-black/10 dark:hover:bg-white/10 transition"
+                    aria-label="Toggle theme"
+                >
+                    {dark ? "🌙" : "☀️"}
+                </button>
             </div>
         </header>
     )
