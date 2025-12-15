@@ -59,22 +59,24 @@ export default function Home() {
   const paginated = filtered.slice(start, start + ITEMS_PER_PAGE);
 
   return (
-    <div className="p-6 max-w-6xl mx-auto">
-      <h1 className="text-2xl font-bold mb-4"> Product Catalog </h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-10">
-        {paginated.map((p) => (
-          <Card key={p.code} product={p}/>
-        ))}
-      </div>
-
-      {filtered.length === 0 && (
-        <p className="text-center text-gray-500 mt-10">
-          No products found
-        </p>
+    <div className="w-full min-h-[70vh]">
+      <h1 className="text-2xl font-bold mb-6"> Product Catalog </h1>
+      {paginated.length === 0 ? (
+        <div className="flex min-h-[50vh] items-center justify-center">
+          <p className="text-muted text-lg text-center">
+            No products found.
+          </p>
+        </div>
+      ) : (
+        <div className="grid gap-10 w-full justify-items-stretch [grid-template-columns:repeat(auto-fill,minmax(260px,1fr))]">
+          {paginated.map((p) => (
+            <Card key={p.code} product={p} />
+          ))}
+        </div>
       )}
 
       {totalPages > 1 && (
-        <div className="flex justify-center gap-2 mt-8 flex-wrap">
+        <div className="flex justify-center gap-2 mt-10 flex-wrap">
           {Array.from({ length: totalPages }).map((_, i) => {
             const page = i + 1;
             return (
@@ -84,7 +86,8 @@ export default function Home() {
                   const newParams = new URLSearchParams(params.toString());
                   newParams.set("page", page.toString());
                   router.push(`/?${newParams.toString()}`);
-                }}  
+                }}
+                className="px-3 py-1 rounded-md border border-subtle hover:bg-black/5 dark:bg-white/10 transition"  
               >
                 {page}
               </button>

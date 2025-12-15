@@ -16,13 +16,15 @@ export const Navbar = () => {
     }, [dark]);
 
     return (
-        <header className="sticky top-0 z-50 bg-surface border-b border-subtle dark:bg-black shadow">
-            <div className="max-w-7xl mx-auto px-4 py-3 space-y-3">
-                
-                {/** Top Row */}
-                <div className="flex items-center justify-between">
+        <header 
+            className="fixed top-0 z-50 left-0 right-0 border-b border-subtle backdrop-blur supports-[backdrop-filter]:bg-[var(--bg)] shadow"
+            style={{backgroundColor: "var(--bg) "}}
+        >
+            <div className="max-w-7xl mx-auto px-6 py-4">
+                <div className="grid grid-cols-1 gap-4 md:grid-cols-3 md:items-center">
+                    {/** Top Row */}
                     <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold">
+                        <div className="w-10 h-10 rounded-full flex items-center justify-center font-bold border border-subtle">
                             Rx
                         </div>
                         <div className="leading-tight">
@@ -30,22 +32,24 @@ export const Navbar = () => {
                             <h1 className="text-lg font-semibold">Name</h1>
                         </div>
                     </div>
+
+                    {/** Search & CAtegory */}
+                    <div className="flex flex-col gap-2">
+                        <SearchBar />
+                        <CategoryFilter />
+                    </div>
+
+                    {/** Dark mode toggle */}
+                    <div className="flex md:justify-end">
+                        <button
+                            onClick={() => setDark(!dark)}
+                            className="rounded-lg p-2 border border-subtle hover:bg-black/5 dark:hover:bg-white/10 transition"
+                            aria-label="Toggle theme"
+                        >
+                            {dark ? "🌙" : "☀️"}
+                        </button>
+                    </div>
                 </div>
-
-                {/** Search */}
-                <SearchBar />
-
-                {/** Categories */}
-                <CategoryFilter />
-
-                {/** Dark mode toggle */}
-                <button
-                    onClick={() => setDark(!dark)}
-                    className="rounded-lg p-2 hover:bg-black/10 dark:hover:bg-white/10 transition"
-                    aria-label="Toggle theme"
-                >
-                    {dark ? "🌙" : "☀️"}
-                </button>
             </div>
         </header>
     )

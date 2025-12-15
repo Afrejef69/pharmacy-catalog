@@ -9,11 +9,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className="min-h-screen flex flex-col bg-gray-100 dark:bg-gray-950 text-gray-900 dark:text-gray-100">
+    <html lang="en" className="dark">
+      <body className="min-h-screen flex flex-col pt-28">
         <CatalogProvider>
           <Navbar />
-          <main className="flex-1 max-w-7xl mx-auto px-8 py-10">{children}</main>
+          <main className="flex-1 w-full max-w-7xl mx-auto px-8 py-10">{children}</main>
           <Footer />
         </CatalogProvider>
       </body>

@@ -9,33 +9,24 @@
    ==================== */
 
 :root {
-  --bg: #f4f7fb;
-  --surface: #ffffff;
-  --text: #1f2937;
-  --muted: #6b7280;
-  --border: #3b82f6;
-  --primary: #e5e7eb;
+  --bg: #f4fff7;
+  --card-bg: #ffffff;
+  --footer-bg: #e3f6e9;
+  --border: rgba(40, 194, 60, 0.25);
+  --text: #000000;
+  --muted: #5f6b61;
+  --accent: #28c28c;
 }
 
 .dark {
-  --bg: #0b1020;
-  --surface: #121832;
-  --text: #e5e7eb;
-  --muted: #9ca3af;
-  --primary: #8b5cf6;
-  --border: #1f2937;
+  --bg: #0e030f;
+  --card-bg: #160127;
+  --footer-bg: #140b2d;
+  --border: rgba(169, 112, 255, 0.35);
+  --text: #d9d9d9;
+  --muted: #9a9ab0;
+  --accent: #a970ff;
 }
-
-/* @media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #0f172a;
-    --surface: #020617;
-    --text: #e5e7eb;
-    --muted: #94a3b8;
-    --border: #1e293b;
-    --primary: #3b82f6;
-  }
-} */
 
 /* ====================
       Base styles
@@ -47,7 +38,7 @@ body {
 }
 
 body {
-  background-color: var(--bg);
+  background: var(--bg);
   color: var(--text);
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -62,7 +53,7 @@ body {
 }
 
 .bg-surface {
-  background-color: var(--surface);
+  background-color: var(--card-bg);
 }
 
 .border-subtle {

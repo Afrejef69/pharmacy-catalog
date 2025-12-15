@@ -30,7 +30,7 @@ export default function SearchBar() {
       placeholder="Buscar producto..."
       value={search}
       onChange={handleChange}
-      className="w-full p-2 border rounded-md border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+      className="w-full h-12 px-4 rounded-xl border border-gray-300/60 dark:border-gray-700/60 bg-white/80 dark:bg-gray-900/80 backdrop-blur text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/60 transition"
     />
    );
 }
