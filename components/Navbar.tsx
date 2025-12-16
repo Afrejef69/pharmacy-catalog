@@ -29,7 +29,7 @@ export const Navbar = () => {
                         </div>
                         <div className="leading-tight">
                             <p className="text-sm text-muted">Farmacia</p>
-                            <h1 className="text-lg font-semibold">Nombre</h1>
+                            <h1 className="text-lg font-semibold">Shalom</h1>
                         </div>
                     </div>
 

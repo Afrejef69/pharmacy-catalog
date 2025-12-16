@@ -14,6 +14,15 @@ import { useCatalog } from "./context/CatalogContext";
       .replace(/[\u0300-\u036f]/g, "")
       .toLowerCase();
 
+  type GroupedProduct ={
+    codigo: string;
+    nombre: string;
+    categoria: string;
+    imagen?: string;
+    precios: Record<string, number>;
+    existencia: number;
+  };
+
 export default function Home() {
   const { products, setProducts, category} = useCatalog();
   const [error, setError] = useState(false);
@@ -42,25 +51,51 @@ export default function Home() {
 
   const filtered = products.filter((p) => {
     const searchableText = normalize(
-    [
-      p.nombre,
-      p.presentacion,
-      p.codigo,
-    ]
-      .join(" ")
-      .toLowerCase()
+    [p.nombre, p.presentacion, p.codigo,].join(" ")
     );
 
     const matchesSearch = searchableText.includes(normalize(search));
-    const matchesCategory = category
-      ? p.categoria === category
-      : true;
+    const matchesCategory = category ? p.categoria === category : true;
     return matchesSearch && matchesCategory;
   });
 
-  const totalPages = Math.ceil(filtered.length / ITEMS_PER_PAGE);
+  const grouped: GroupedProduct[] = Object.values(
+    filtered.reduce<Record<string, GroupedProduct>>(
+      (acc, product: Product) => {
+      const key = product.nombre.toLowerCase();
+
+      if (!acc[key]) {
+        acc[key] = {
+          codigo: product.codigo,
+          nombre: product.nombre,
+          categoria: product.categoria,
+          imagen: product.imagen,
+          precios: {},
+          existencia: 0,
+        };
+      }
+
+      acc[key].precios[product.presentacion] = parseFloat(product.precio);
+      acc[key].existencia = Math.max(
+        acc[key].existencia,
+        Number(product.existencia)
+      );
+      return acc;
+    }, {})
+  );
+
+  const totalPages = Math.ceil(grouped.length / ITEMS_PER_PAGE);
   const start = (page - 1) * ITEMS_PER_PAGE;
-  const paginated = filtered.slice(start, start + ITEMS_PER_PAGE);
+  const paginated = grouped.slice(start, start + ITEMS_PER_PAGE);
+
+  const goToPage = (newPage: number) => {
+    const newParams = new URLSearchParams(params.toString());
+    newParams.set("page", newPage.toString());
+    router.push(`/?${newParams.toString()}`, { scroll: false });
+  };
+
+  const hasPrev = page > 1;
+  const hasNext = page < totalPages;
 
   return (
     <div className="w-full min-h-[70vh]">
@@ -81,22 +116,52 @@ export default function Home() {
 
       {totalPages > 1 && (
         <div className="flex justify-center gap-2 mt-10 flex-wrap">
+
+          {/** Anterior */}
+          <button
+            onClick={() => goToPage(page-1)}
+            disabled={!hasPrev}
+            className={`px-3 py-1 rounded-md border transition
+                        ${hasPrev
+                        ? "hover:bg-black/5 dark:hover:bg-white/10"
+                        : "opacity-40 cursor-not-allowed"
+                      }`}
+          >
+            ←
+          </button>
+
+          {/** Páginas */}
           {Array.from({ length: totalPages }).map((_, i) => {
-            const page = i + 1;
+            const p = i + 1;
+            const isActive = p === page;
+            
             return (
               <button
-                key={page}
-                onClick={() => {
-                  const newParams = new URLSearchParams(params.toString());
-                  newParams.set("page", page.toString());
-                  router.push(`/?${newParams.toString()}`);
-                }}
-                className="px-3 py-1 rounded-md border border-subtle hover:bg-black/5 dark:bg-white/10 transition"  
+                key={p}
+                onClick={() => goToPage(p)}
+                className={`px-3 py-1 rounded-md border transition
+                            ${isActive
+                            ? "bg-[var(--accent)] text-white border-transparent"
+                            : "hover:bg-black/5 dark:hover:bg-white/10"
+                          }`}
               >
-                {page}
+                {p}
               </button>
             );
           })}
+
+          {/** Siguiente */}
+          <button
+            onClick={() => goToPage(page + 1)}
+            disabled={!hasNext}
+            className={`px-3 py-1 rounded-md border transition
+                        ${hasNext
+                        ? "hover:bg-black/5 dark:hover:bg-white/10"
+                        : "opacity-40 cursor-not-allowed"
+                      }`}
+          >
+            →
+          </button>
         </div>
       )}
     </div>

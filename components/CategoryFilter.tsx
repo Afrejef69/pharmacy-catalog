@@ -1,12 +1,15 @@
 "use client";
 
 import { useCatalog } from "@/app/context/CatalogContext";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 export default function CategoryFilter() {
     const { category, setCategory, categories } = useCatalog();
     const [open, setOpen] = useState(false);
     const ref = useRef<HTMLDivElement>(null);
+    const router = useRouter();
+    const params = useSearchParams();
 
     useEffect(() => {
         const handleClickOutside = (e: MouseEvent) => {
@@ -18,10 +21,27 @@ export default function CategoryFilter() {
         return () => document.removeEventListener("mousedown", handleClickOutside);
     }, []);
 
+    const updateCategory = (value: string) => {
+        setCategory(value);
+
+        const newParams = new URLSearchParams(params.toString());
+
+        if (value) {
+            newParams.set("category", value);
+        } else {
+            newParams.delete("category");
+        }
+
+        newParams.delete("page");
+
+        router.replace(`/?${newParams.toString()}`, { scroll: false });
+        setOpen(false);
+    };
+
     return (
         <div ref={ref} className="relative w-full sm:w-64">
             <button
-                onClick={() => setOpen(!open)}
+                onClick={() => setOpen((prev) => !prev)}
                 className="w-full flex items-center justify-between px-4 py-3 text-sm rounded-xl bg-[var(--card-bg)] text-[var(--text)] border border-[var(--border)] hover:bg-black/5 dark:hover:bg-white/10 transition"
             >
                 <span className="truncate">
@@ -46,8 +66,7 @@ export default function CategoryFilter() {
                         <button
                             key = {cat}
                             onClick={() => {
-                                setCategory(cat);
-                                setOpen(false);
+                                updateCategory(cat);
                             }}
                             className="w-full text-left px-4 py-2 text-sm hover:bg-black/5 dark:hover:bg-white/10"
                         >

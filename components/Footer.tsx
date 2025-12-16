@@ -11,7 +11,7 @@ export default function Footer() {
                 
                 {/* Column 1 - Branding */}
                 <div>
-                    <h3 className="text-lg font-semibold mb-2">Nombre de la farmacia</h3>
+                    <h3 className="text-lg font-semibold mb-2">Farmacia Shalom</h3>
                     {/* Logo */}
                     {/* <Image src="" alt="Logo" width={120} height={40} />*/}
                 </div>
@@ -20,17 +20,17 @@ export default function Footer() {
                 <div>
                     <h4 className="font-semibold mb-3">Contacto</h4>
                     <ul className="space-y-2">
-                        <li>📍 Dirección: Guatemala City</li>
-                        <li>📞 Telefono: +502 0000-0000</li>
-                        <li>✉️ Correo: contact@pharmacy.com</li>
+                        <li>📍 <strong>Dirección:</strong> {process.env.NEXT_PUBLIC_STORE_ADDRESS}</li>
+                        <li>📞 <strong>Telefono:</strong> {process.env.NEXT_PUBLIC_STORE_PHONE} </li>
+                        <li>✉️ <strong>Correo:</strong> {process.env.NEXT_PUBLIC_STORE_EMAIL} </li>
                     </ul>
                 </div>
                 
                 {/* Column 3 - Information */}
                 <div>
                     <h4 className="font-semibold mb-3">Información</h4>
-                    <ul className="space-y-2">
-                        <li>Horario de atención</li>
+                    <ul className="space-y-2 text-sm text-[var(--muted)]">
+                        <li><strong>Horario de atención:</strong> 8:00 a.m. a 12:00 a.m.</li>
                         <li>La disponibilidad del producto está sujeta a cambios.</li>
                         <li>Los precios pueden cambiar sin previo aviso.</li>
                         <li>Catálogo sólo con fines informativos.</li>

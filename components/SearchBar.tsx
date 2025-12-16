@@ -20,6 +20,7 @@ export default function SearchBar() {
       newParams.delete("page");
     } else {
       newParams.delete("q");
+      newParams.delete("page");
     }
 
     router.replace(`/?${newParams.toString()}`, { scroll: false });
