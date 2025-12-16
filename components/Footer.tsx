@@ -7,7 +7,7 @@ export default function Footer() {
                 borderColor: "var(--border)",
             }}    
         >
-            <div className="max-w-7xl mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-3 gap-10 text-sm text-gray-600 dark:text-gray-400">
+            <div className="max-w-7xl mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-3 gap-10 text-sm">
                 
                 {/* Column 1 - Branding */}
                 <div>
@@ -18,29 +18,29 @@ export default function Footer() {
                 
                 {/* Column 2 - Contact */}
                 <div>
-                    <h4 className="font-semibold mb-3">Contact</h4>
+                    <h4 className="font-semibold mb-3">Contacto</h4>
                     <ul className="space-y-2">
-                        <li>📍 Address: Guatemala City</li>
-                        <li>📞 Phone: +502 0000-0000</li>
-                        <li>✉️ Email: contact@pharmacy.com</li>
+                        <li>📍 Dirección: Guatemala City</li>
+                        <li>📞 Telefono: +502 0000-0000</li>
+                        <li>✉️ Correo: contact@pharmacy.com</li>
                     </ul>
                 </div>
                 
                 {/* Column 3 - Information */}
                 <div>
-                    <h4 className="font-semibold mb-3">Information</h4>
+                    <h4 className="font-semibold mb-3">Información</h4>
                     <ul className="space-y-2">
-                        <li>Opening hours.</li>
-                        <li>Product availability subject to change.</li>
-                        <li>Pricesmay change without notice.</li>
-                        <li>Catalog for informational purposes only.</li>
+                        <li>Horario de atención</li>
+                        <li>La disponibilidad del producto está sujeta a cambios.</li>
+                        <li>Los precios pueden cambiar sin previo aviso.</li>
+                        <li>Catálogo sólo con fines informativos.</li>
                     </ul>
                 </div>
 
             </div>
 
             {/* Bottom bar */}
-            <div className="text-center text-xs text-gray-500 dark:text-gray-500 py-4 border-t border-gray-200 dark:border-gray-800">
+            <div className="text-center text-xs py-4 border-t">
                 © {new Date().getFullYear()} Pharmacy Catalog. All Rights reserved.
             </div>
         </footer>

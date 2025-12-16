@@ -1,23 +1,28 @@
 import Papa from "papaparse";
 
 export type Product = {
-    name: string;
-    description: string;
-    price: string;
-    image: string;
-    category: string;
-    stock: string;
-    code: string;
+    nombre: string;
+    presentacion: string;
+    descripcion: string;
+    precio: string;
+    imagen: string;
+    categoria: string;
+    existencia: string;
+    prescripcion: string;
+    codigo: string;
 };
 
 type RawProduct = Partial<Product>;
 
 export async function getProducts(): Promise<Product[]>{
-    const csvUrl = 
-        "https://docs.google.com/spreadsheets/d/e/2PACX-1vRDnhchvf_h1q2cnlaSSk5gtYuavuaeJdnhYoIzhxhu57wHGoLMBlhksGgA7krSCru0dlzV5QkoFZ74/pub?output=csv";
+    const csvUrl = process.env.GOOGLE_SHEETS_CSV_URL;
+
+    if(!csvUrl) {
+        throw new Error("Missing Google_SHEETS_CSV_URL env variable");
+    }
 
     const response = await fetch(csvUrl, {
-        //next: { revalidate: 3600 },
+        //next: { revalidate: 1800 },
         cache: "no-store"
     });
     const csvText = await response.text();
@@ -32,16 +37,18 @@ export async function getProducts(): Promise<Product[]>{
     const products: Product[] = [];
     
     for (const p of rawProducts) {
-        if (!p.name || !p.image) continue;
+        if (!p.nombre || !p.prescripcion || !p.presentacion) continue;
 
         products.push({
-            name: p.name.trim(),
-            description: p.description?.trim() ?? "",
-            price: p.price?.trim() ?? "",
-            image: p.image.trim(),
-            category: p.category?.trim() ?? "",
-            stock: p.stock?.trim() ?? "",
-            code: p.code?.trim() ?? "",
+            nombre: p.nombre.trim(),
+            presentacion: p.presentacion.trim(),
+            descripcion: p.descripcion?.trim() ?? "",
+            precio: p.precio?.trim() ?? "",
+            imagen: p.imagen?.trim() ?? "",
+            categoria: p.categoria?.trim() ?? "",
+            existencia: p.existencia?.trim() ?? "",
+            prescripcion: p.prescripcion.trim(),
+            codigo: p.codigo?.trim() ?? "",
         });
     }
 

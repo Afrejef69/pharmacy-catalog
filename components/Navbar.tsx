@@ -25,11 +25,11 @@ export const Navbar = () => {
                     {/** Top Row */}
                     <div className="flex items-center gap-3">
                         <div className="w-10 h-10 rounded-full flex items-center justify-center font-bold border border-subtle">
-                            Rx
+                            FB
                         </div>
                         <div className="leading-tight">
-                            <p className="text-sm text-muted">Pharmacy</p>
-                            <h1 className="text-lg font-semibold">Name</h1>
+                            <p className="text-sm text-muted">Farmacia</p>
+                            <h1 className="text-lg font-semibold">Nombre</h1>
                         </div>
                     </div>
 

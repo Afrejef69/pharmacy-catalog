@@ -10,27 +10,33 @@ export default function SearchBar() {
    const { search, setSearch} = useCatalog();
 
    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value.toLowerCase();
+    const value = e.target.value;
     setSearch(value);
 
     const newParams = new URLSearchParams(params.toString());
 
     if (value) {
-      newParams.set("q", value);
+      newParams.set("q", value.toLowerCase());
+      newParams.delete("page");
     } else {
       newParams.delete("q");
     }
 
-    router.push(`/?${newParams.toString()}`, { scroll: false });
+    router.replace(`/?${newParams.toString()}`, { scroll: false });
    };
    
    return (
-    <input
-      type="text"
-      placeholder="Buscar producto..."
-      value={search}
-      onChange={handleChange}
-      className="w-full h-12 px-4 rounded-xl border border-gray-300/60 dark:border-gray-700/60 bg-white/80 dark:bg-gray-900/80 backdrop-blur text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/60 transition"
-    />
+    <div className="relative w-full">
+      <span className="absolute left-4 top-1/2 -translate-y-1/2 text-[var(--muted)]">
+        🔍
+      </span>
+      <input
+        type="text"
+        placeholder="Buscar producto..."
+        value={search}
+        onChange={handleChange}
+        className="w-full px-4 py-3 pl-11 text-sm rounded-xl bg-[var(--card-bg)] text-[var(--text)] border border-[var(--border)] placeholder:text-[var(--muted)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:border-transparent transition"
+      />
+    </div>
    );
 }

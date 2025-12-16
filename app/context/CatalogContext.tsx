@@ -15,22 +15,14 @@ type CatalogContextType = {
 
 const CatalogContext = createContext<CatalogContextType | null>(null);
 
-export function CatalogProvider({ 
-    children,
- }: { 
-    children: React.ReactNode;
-}) {
+export function CatalogProvider({ children }: { children: React.ReactNode }) {
     const [products,setProducts] = useState<Product[]>([]);
     const [search, setSearch] = useState("");
     const [category, setCategory] = useState("");
 
     const categories = useMemo(() => {
         return Array.from(
-            new Set(
-                products
-                .map((p) => p.category)
-                .filter((c): c is string => Boolean(c))
-            )
+            new Set(products.map((p) => p.categoria?.trim()).filter(Boolean))
         );
     }, [products]);
     

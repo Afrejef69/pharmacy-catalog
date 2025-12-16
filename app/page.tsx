@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Product } from "./lib/getProducts";
 import { useSearchParams, useRouter } from "next/navigation";
 import { Card } from "@/components";
+import { useCatalog } from "./context/CatalogContext";
 
   const ITEMS_PER_PAGE = 20;
   
@@ -14,7 +15,7 @@ import { Card } from "@/components";
       .toLowerCase();
 
 export default function Home() {
-  const [products, setProducts] = useState<Product[]>([]);
+  const { products, setProducts, category} = useCatalog();
   const [error, setError] = useState(false);
   const params = useSearchParams();
   const search = (params.get("q") ?? "").toLowerCase();
@@ -40,18 +41,21 @@ export default function Home() {
   }
 
   const filtered = products.filter((p) => {
-    const serchableText = normalize(
+    const searchableText = normalize(
     [
-      p.name,
-      p.description ?? "",
-      p.category ?? "",
-      p.code,
+      p.nombre,
+      p.presentacion,
+      p.codigo,
     ]
       .join(" ")
       .toLowerCase()
     );
 
-    return serchableText.includes(normalize(search));
+    const matchesSearch = searchableText.includes(normalize(search));
+    const matchesCategory = category
+      ? p.categoria === category
+      : true;
+    return matchesSearch && matchesCategory;
   });
 
   const totalPages = Math.ceil(filtered.length / ITEMS_PER_PAGE);
@@ -60,17 +64,17 @@ export default function Home() {
 
   return (
     <div className="w-full min-h-[70vh]">
-      <h1 className="text-2xl font-bold mb-6"> Product Catalog </h1>
+      <h1 className="text-2xl font-bold mb-6"> Catalogo de Medicamentos </h1>
       {paginated.length === 0 ? (
         <div className="flex min-h-[50vh] items-center justify-center">
           <p className="text-muted text-lg text-center">
-            No products found.
+            No se encontraron productos.
           </p>
         </div>
       ) : (
         <div className="grid gap-10 w-full justify-items-stretch [grid-template-columns:repeat(auto-fill,minmax(260px,1fr))]">
           {paginated.map((p) => (
-            <Card key={p.code} product={p} />
+            <Card key={p.codigo} product={p} />
           ))}
         </div>
       )}
