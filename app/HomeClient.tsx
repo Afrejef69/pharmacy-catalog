@@ -127,9 +127,9 @@ export default function Home() {
             <button
                 onClick={() => goToPage(page-1)}
                 disabled={!hasPrev}
-                className={`px-3 py-1 rounded-md border transition
+                className={`px-3 py-1 rounded-md border transition-all duration-200 ease-out
                             ${hasPrev
-                            ? "hover:bg-black/5 dark:hover:bg-white/10"
+                            ? "cursor-pointer hover:bg-black/5 dark:hover:bg-white/10 hover:scale-105 active-95"
                             : "opacity-40 cursor-not-allowed"
                         }`}
             >
@@ -145,10 +145,10 @@ export default function Home() {
                 <button
                     key={p}
                     onClick={() => goToPage(p)}
-                    className={`px-3 py-1 rounded-md border transition
+                    className={`px-3 py-1 rounded-md border transition-all duration-200 ease-out cursor-pointer
                                 ${isActive
-                                ? "bg-[var(--accent)] text-white border-transparent"
-                                : "hover:bg-black/5 dark:hover:bg-white/10"
+                                ? "cursor-pointer bg-[var(--accent)] text-white border-transparent scale-105"
+                                : "hover:bg-black/5 dark:hover:bg-white/10 haver:scale-105 active:scale-95"
                             }`}
                 >
                     {p}
@@ -160,9 +160,9 @@ export default function Home() {
             <button
                 onClick={() => goToPage(page + 1)}
                 disabled={!hasNext}
-                className={`px-3 py-1 rounded-md border transition
+                className={`px-3 py-1 rounded-md border transition-all duration-200 ease-out
                             ${hasNext
-                            ? "hover:bg-black/5 dark:hover:bg-white/10"
+                            ? "cursor-pointer hover:bg-black/5 dark:hover:bg-white/10 hover:scale-105 active:scale-95"
                             : "opacity-40 cursor-not-allowed"
                         }`}
             >

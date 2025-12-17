@@ -10,13 +10,13 @@ type CardProduct = {
 export default function Card({ product }: {product: CardProduct}) {
     return (
         <div className="rounded-2xl border border-[var(--border)] bg-[var(--card-bg)] p-5 shadow-sm hover:shadow-lg hover:scale-[1.01] transition">
-            <div className="relative w-full h-56 mb-4 rounded-xl overflow-hidden">
+            <div className="relative w-full h-40 sm:h-48 mb-4 rounded-xl overflow-hidden">
                 {product.imagen && (
                     <Image
                         src={product.imagen || '/placeholder.png'}
                         alt={product.nombre}
                         fill
-                        className="object-cover"
+                        className="object-contain"
                     />
                 )}
             </div>
