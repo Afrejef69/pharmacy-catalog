@@ -103,72 +103,74 @@ export default function Home() {
   const hasNext = page < totalPages;
 
   return (
-    <div className="w-full min-h-[70vh]">
-      <h1 className="text-2xl font-bold mb-6"> Catalogo de Medicamentos </h1>
-      {paginated.length === 0 ? (
-        <div className="flex min-h-[50vh] items-center justify-center">
-          <p className="text-muted text-lg text-center">
-            No se encontraron productos.
-          </p>
-        </div>
-      ) : (
-        <div className="grid gap-10 w-full justify-items-stretch [grid-template-columns:repeat(auto-fill,minmax(260px,1fr))]">
-          {paginated.map((p) => (
-            <Card key={p.codigo} product={p} />
-          ))}
-        </div>
-      )}
+    <main className="pt-[30px] md:pt-[20px]">
+        <div className="w-full min-h-[70vh]">
+        <h1 className="text-sm text-muted mb-2 md:text-2xl md:font-bold md:mb-6"> Catalogo de Medicamentos </h1>
+        {paginated.length === 0 ? (
+            <div className="flex min-h-[50vh] items-center justify-center">
+            <p className="text-muted text-lg text-center">
+                No se encontraron productos.
+            </p>
+            </div>
+        ) : (
+            <div className="grid gap-10 w-full justify-items-stretch [grid-template-columns:repeat(auto-fill,minmax(260px,1fr))]">
+            {paginated.map((p) => (
+                <Card key={p.codigo} product={p} />
+            ))}
+            </div>
+        )}
 
-      {totalPages > 1 && (
-        <div className="flex justify-center gap-2 mt-10 flex-wrap">
+        {totalPages > 1 && (
+            <div className="flex justify-center gap-2 mt-10 flex-wrap">
 
-          {/** Anterior */}
-          <button
-            onClick={() => goToPage(page-1)}
-            disabled={!hasPrev}
-            className={`px-3 py-1 rounded-md border transition
-                        ${hasPrev
-                        ? "hover:bg-black/5 dark:hover:bg-white/10"
-                        : "opacity-40 cursor-not-allowed"
-                      }`}
-          >
-            ←
-          </button>
-
-          {/** Páginas */}
-          {Array.from({ length: totalPages }).map((_, i) => {
-            const p = i + 1;
-            const isActive = p === page;
-            
-            return (
-              <button
-                key={p}
-                onClick={() => goToPage(p)}
+            {/** Anterior */}
+            <button
+                onClick={() => goToPage(page-1)}
+                disabled={!hasPrev}
                 className={`px-3 py-1 rounded-md border transition
-                            ${isActive
-                            ? "bg-[var(--accent)] text-white border-transparent"
-                            : "hover:bg-black/5 dark:hover:bg-white/10"
-                          }`}
-              >
-                {p}
-              </button>
-            );
-          })}
+                            ${hasPrev
+                            ? "hover:bg-black/5 dark:hover:bg-white/10"
+                            : "opacity-40 cursor-not-allowed"
+                        }`}
+            >
+                ←
+            </button>
 
-          {/** Siguiente */}
-          <button
-            onClick={() => goToPage(page + 1)}
-            disabled={!hasNext}
-            className={`px-3 py-1 rounded-md border transition
-                        ${hasNext
-                        ? "hover:bg-black/5 dark:hover:bg-white/10"
-                        : "opacity-40 cursor-not-allowed"
-                      }`}
-          >
-            →
-          </button>
+            {/** Páginas */}
+            {Array.from({ length: totalPages }).map((_, i) => {
+                const p = i + 1;
+                const isActive = p === page;
+                
+                return (
+                <button
+                    key={p}
+                    onClick={() => goToPage(p)}
+                    className={`px-3 py-1 rounded-md border transition
+                                ${isActive
+                                ? "bg-[var(--accent)] text-white border-transparent"
+                                : "hover:bg-black/5 dark:hover:bg-white/10"
+                            }`}
+                >
+                    {p}
+                </button>
+                );
+            })}
+
+            {/** Siguiente */}
+            <button
+                onClick={() => goToPage(page + 1)}
+                disabled={!hasNext}
+                className={`px-3 py-1 rounded-md border transition
+                            ${hasNext
+                            ? "hover:bg-black/5 dark:hover:bg-white/10"
+                            : "opacity-40 cursor-not-allowed"
+                        }`}
+            >
+                →
+            </button>
+            </div>
+        )}
         </div>
-      )}
-    </div>
+    </main>
   );
 }
