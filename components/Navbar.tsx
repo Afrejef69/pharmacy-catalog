@@ -1,9 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import SearchBar from "./SearchBar";
 import CategoryFilter from "./CategoryFilter";
 import { useEffect, useState } from "react";
+import { Wrapper } from ".";
 
 export const Navbar = () => {
     const [dark, setDark] = useState(false);
@@ -43,7 +43,7 @@ export const Navbar = () => {
 
                     {/** Search & CAtegory */}
                     <div className="flex flex-col gap-2">
-                        <SearchBar />
+                        <Wrapper />
                         <CategoryFilter />
                     </div>
 

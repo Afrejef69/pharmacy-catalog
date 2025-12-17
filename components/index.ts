@@ -4,6 +4,7 @@ import Footer from "./Footer";
 import Loading from "./Loading";
 import { Navbar } from "./Navbar";
 import SearchBar from "./SearchBar";
+import Wrapper from "./Wrapper"
 
 export {
     Card,
@@ -11,5 +12,6 @@ export {
     Footer,
     Loading,
     Navbar,
-    SearchBar
+    SearchBar,
+    Wrapper
 };
