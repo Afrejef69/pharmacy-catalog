@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import SearchBar from "./SearchBar";
 import CategoryFilter from "./CategoryFilter";
 import { useEffect, useState } from "react";
@@ -23,13 +24,20 @@ export const Navbar = () => {
             <div className="max-w-7xl mx-auto px-6 py-4">
                 <div className="grid grid-cols-1 gap-4 md:grid-cols-3 md:items-center">
                     {/** Top Row */}
-                    <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-full flex items-center justify-center font-bold border border-subtle">
-                            FB
+                    <div className="flex flex-col items-center text-center gap-2">
+                        <div className="relative w-40 h-16 sm:w48 sm:h-20">
+                            <Image
+                            src="/logo-shalom.png"
+                            alt="Logo"
+                            fill
+                            className="object-contain"
+                            priority
+                        />
                         </div>
                         <div className="leading-tight">
-                            <p className="text-sm text-muted">Farmacia</p>
-                            <h1 className="text-lg font-semibold">Shalom</h1>
+                            <p className="text-xs uppercase tracking-widest text-muted">Farmacia</p>
+                            <h1 className="text-xl sm:text-2xl font-extrabold tracking-wide text-[var(--text)]">Shalom</h1>
+                            <p className="text-xs italic text-muted">Abierto hasta la media noche</p>
                         </div>
                     </div>
 

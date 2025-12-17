@@ -32,6 +32,10 @@ export default function Home() {
   const router = useRouter();
 
   useEffect(() => {
+    router.replace("/", { scroll:false })
+  }, [router]);
+
+  useEffect(() => {
     fetch("/api/products")
      .then((res) => {
         if (!res.ok) throw new Error("Failed to fetch products");
@@ -39,6 +43,7 @@ export default function Home() {
     })
      .then((data: Product[]) => setProducts(data))
      .catch(() => setError(true));
+     
   }, [setProducts]);
 
   if (error) {

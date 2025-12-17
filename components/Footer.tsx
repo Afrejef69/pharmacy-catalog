@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function Footer() {
     return (
         <footer 
@@ -10,10 +12,21 @@ export default function Footer() {
             <div className="max-w-7xl mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-3 gap-10 text-sm">
                 
                 {/* Column 1 - Branding */}
-                <div>
-                    <h3 className="text-lg font-semibold mb-2">Farmacia Shalom</h3>
-                    {/* Logo */}
-                    {/* <Image src="" alt="Logo" width={120} height={40} />*/}
+                <div className="flex flex-col items-center text-center gap-2">
+                    <div className="relative w-40 h-16 sm:w48 sm:h-20">
+                        <Image
+                        src="/logo-shalom.png"
+                        alt="Logo"
+                        fill
+                        className="object-contain"
+                        priority
+                    />
+                    </div>
+                    <div className="leading-tight">
+                        <p className="text-xs uppercase tracking-widest text-muted">Farmacia</p>
+                        <h1 className="text-xl sm:text-2xl font-extrabold tracking-wide text-[var(--text)]">Shalom</h1>
+                        <p className="text-xs italic text-muted">Abierto hasta la media noche</p>
+                    </div>
                 </div>
                 
                 {/* Column 2 - Contact */}
