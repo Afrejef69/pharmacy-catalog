@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import Image from "next/image";
 import CategoryFilter from "./CategoryFilter";
@@ -44,7 +44,6 @@ export const Navbar = () => {
                     {/** Search & CAtegory */}
                     <div className="flex flex-col gap-2">
                         <Wrapper />
-                        <CategoryFilter />
                     </div>
 
                     {/** Dark mode toggle */}
