@@ -5,7 +5,7 @@ export type Product = {
     presentacion: string;
     descripcion: string;
     precio: string;
-    imagen: string;
+    imagen?: string;
     categoria: string;
     existencia: string;
     prescripcion: string;

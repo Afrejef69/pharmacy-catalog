@@ -1,7 +1,6 @@
 'use client';
 
 import Image from "next/image";
-import CategoryFilter from "./CategoryFilter";
 import { useEffect, useState } from "react";
 import { Wrapper } from ".";
 

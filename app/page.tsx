@@ -74,7 +74,7 @@ export default function Home() {
           codigo: product.codigo,
           nombre: product.nombre,
           categoria: product.categoria,
-          imagen: product.imagen,
+          imagen: product.imagen || './placeholder.png',
           precios: {},
           existencia: 0,
         };

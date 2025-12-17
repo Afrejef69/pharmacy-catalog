@@ -13,7 +13,7 @@ export default function Card({ product }: {product: CardProduct}) {
             <div className="relative w-full h-56 mb-4 rounded-xl overflow-hidden">
                 {product.imagen && (
                     <Image
-                        src={product.imagen}
+                        src={product.imagen || '/placeholder.png'}
                         alt={product.nombre}
                         fill
                         className="object-cover"
