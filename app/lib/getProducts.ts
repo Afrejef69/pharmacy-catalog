@@ -22,8 +22,7 @@ export async function getProducts(): Promise<Product[]>{
     }
 
     const response = await fetch(csvUrl, {
-        //next: { revalidate: 1800 },
-        cache: "no-store"
+        next: { revalidate: 1800 }
     });
     const csvText = await response.text();
 
