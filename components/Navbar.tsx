@@ -20,11 +20,14 @@ export const Navbar = () => {
             className="fixed top-0 z-50 left-0 right-0 border-b border-subtle backdrop-blur supports-[backdrop-filter]:bg-[var(--bg)] shadow"
             style={{backgroundColor: "var(--bg) "}}
         >
-            <div className="max-w-7xl mx-auto px-6 py-4">
-                <div className="grid grid-cols-1 gap-4 md:grid-cols-3 md:items-center">
+            <div className="max-w-7xl mx-auto px-4 py-3 md:px-6 md:py-4">
+
+                {/** Responsive */}
+                <div className="grid grid-cols-2 gap-3 md:grid-cols-3 md:items-center">
+                    
                     {/** Top Row */}
-                    <div className="flex flex-col items-center text-center gap-2">
-                        <div className="relative w-40 h-16 sm:w48 sm:h-20">
+                    <div className="flex items-center gap-2 order-1 md:order-none">
+                        <div className="relative w-10 h-10 md:w-40 md:h-16">
                             <Image
                             src="/logo-shalom.png"
                             alt="Logo"
@@ -33,20 +36,20 @@ export const Navbar = () => {
                             priority
                         />
                         </div>
-                        <div className="leading-tight">
+                        <div className="hidden md:block leading-tight">
                             <p className="text-xs uppercase tracking-widest text-muted">Farmacia</p>
-                            <h1 className="text-xl sm:text-2xl font-extrabold tracking-wide text-[var(--text)]">Shalom</h1>
+                            <h1 className="text-xl font-extrabold tracking-wide text-[var(--text)]">Shalom</h1>
                             <p className="text-xs italic text-muted">Abierto hasta la media noche</p>
                         </div>
                     </div>
 
                     {/** Search & CAtegory */}
-                    <div className="flex flex-col gap-2">
+                    <div className="col-span-2 md:col-span-1 order-3 md:order-none">
                         <Wrapper />
                     </div>
 
                     {/** Dark mode toggle */}
-                    <div className="flex md:justify-end">
+                    <div className="flex justify-end order-2 md:order-none">
                         <button
                             onClick={() => setDark(!dark)}
                             className="rounded-lg p-2 border border-subtle hover:bg-black/5 dark:hover:bg-white/10 transition"
