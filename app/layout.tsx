@@ -2,6 +2,20 @@ import "./globals.css";
 import { CatalogProvider } from "./context/CatalogContext";
 import { Navbar } from "@/components";
 import { Footer } from "@/components";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: {
+    default: "Farmacia Shalom",
+    template: "%s | Farmacia Shalom",
+  },
+  description: "Catálogo Informativo",
+  openGraph: {
+    title: "Farmacia Shalom",
+    description: "Catálogo",
+    images: ["/logo-min.png"],
+  }
+}
 
 export default function RootLayout({
   children,
